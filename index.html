@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridal Bliss Boutique — Bridal Blouses, Clips & Bands</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:    #C9747A;
+    --rose-d:  #A3565C;
+    --rose-l:  #F5E6E7;
+    --gold:    #C9A96E;
+    --gold-l:  #F7EFE0;
+    --ivory:   #FDF8F2;
+    --dark:    #1C1410;
+    --mid:     #5C4A42;
+    --light:   #8C7B74;
+    --white:   #FFFFFF;
+    --wa:      #25D366;
+    --upi:     #6C3BAA;
+    --shadow:  0 4px 32px rgba(28,20,16,0.10);
+    --shadow-hover: 0 8px 48px rgba(28,20,16,0.18);
+    --r: 12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announcement {
+    background: var(--dark);
+    color: var(--gold);
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+  }
+  .announcement span { color: var(--rose-l); margin: 0 8px; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid rgba(201,164,110,0.2);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 20px rgba(28,20,16,0.06);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--dark); text-decoration: none; letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--rose); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--mid); font-size: 13px; font-weight: 400; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-right { display: flex; gap: 12px; align-items: center; }
+  .nav-cart {
+    background: var(--rose); color: var(--white);
+    border: none; border-radius: 50px;
+    padding: 8px 18px; font-size: 12px; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.06em;
+    transition: background 0.2s, transform 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-cart:hover { background: var(--rose-d); transform: translateY(-1px); }
+  .cart-badge {
+    background: var(--gold); color: var(--dark);
+    border-radius: 50%; width: 18px; height: 18px;
+    font-size: 10px; font-weight: 600;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-left: 4px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 90vh;
+    background: linear-gradient(135deg, #1C1410 0%, #3A2820 50%, #1C1410 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; text-align: center;
+    padding: 80px 24px;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(201,164,110,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(201,116,122,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(201,164,110,0.05) 0%, transparent 60%);
+  }
+  .hero-border {
+    position: absolute; inset: 20px;
+    border: 1px solid rgba(201,164,110,0.2);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(201,164,110,0.15);
+    border: 1px solid rgba(201,164,110,0.4);
+    color: var(--gold);
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.18em; padding: 6px 20px;
+    border-radius: 50px; margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 80px);
+    color: var(--white); line-height: 1.05;
+    margin-bottom: 8px; font-weight: 400;
+    font-style: italic;
+  }
+  .hero h1 span { color: var(--gold); font-style: normal; display: block; }
+  .hero-sub {
+    color: rgba(255,255,255,0.55); font-size: 15px;
+    margin: 16px 0 36px; line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--rose); color: var(--white);
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.06em; border: none; cursor: pointer;
+    transition: all 0.2s; display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: var(--rose-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,116,122,0.4); }
+  .btn-outline {
+    background: transparent; color: var(--gold);
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.06em; border: 1px solid rgba(201,164,110,0.5);
+    cursor: pointer; transition: all 0.2s; display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline:hover { background: rgba(201,164,110,0.1); transform: translateY(-2px); }
+  .hero-stats {
+    display: flex; gap: 32px; justify-content: center;
+    margin-top: 48px; padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); font-weight: 500; }
+  .stat-lbl { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; margin-top: 2px; }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--gold-l);
+    border-bottom: 1px solid rgba(201,164,110,0.2);
+    padding: 14px 24px;
+  }
+  .trust-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; gap: 0; justify-content: space-between; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--mid); font-weight: 400;
+    padding: 4px 16px; flex: 1; min-width: 140px; justify-content: center;
+  }
+  .trust-icon { font-size: 16px; }
+
+  /* ── SECTION ── */
+  .section { max-width: 1200px; margin: 0 auto; padding: 80px 24px; }
+  .section-head { text-align: center; margin-bottom: 48px; }
+  .section-tag {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.18em; color: var(--rose);
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .section-head h2 { font-size: clamp(28px, 4vw, 42px); color: var(--dark); font-style: italic; }
+  .section-head p { color: var(--light); font-size: 14px; margin-top: 10px; max-width: 500px; margin-inline: auto; line-height: 1.7; }
+
+  /* ── CATEGORY GRID ── */
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .cat-card {
+    border-radius: var(--r); overflow: hidden;
+    position: relative; aspect-ratio: 3/4;
+    cursor: pointer; transition: transform 0.3s;
+    background: var(--dark);
+  }
+  .cat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .cat-card:hover .cat-overlay { opacity: 1; }
+  .cat-bg {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .cat-card:hover .cat-bg { transform: scale(1.04); }
+  .cat-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(28,20,16,0.85) 0%, rgba(28,20,16,0.1) 60%);
+    display: flex; align-items: flex-end; padding: 20px;
+    opacity: 0.7; transition: opacity 0.3s;
+  }
+  .cat-label {
+    color: var(--white); font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 500; font-style: italic;
+    line-height: 1.2;
+  }
+  .cat-count { font-size: 11px; color: var(--gold); font-family: 'DM Sans', sans-serif; font-style: normal; }
+
+  /* ── CATEGORY VISUAL PLACEHOLDERS ── */
+  .cat-visual {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 48px; gap: 8px;
+  }
+
+  /* ── PRODUCT GRID ── */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+  .product-card {
+    background: var(--white); border-radius: var(--r);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+  .product-img-wrap {
+    aspect-ratio: 3/4; overflow: hidden; position: relative;
+    background: var(--rose-l);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-img-wrap .product-visual { font-size: 56px; opacity: 0.5; }
+  .product-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--rose); color: var(--white);
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    padding: 4px 10px; border-radius: 50px;
+    text-transform: uppercase;
+  }
+  .product-badge.gold { background: var(--gold); color: var(--dark); }
+  .product-badge.dark { background: var(--dark); color: var(--gold); }
+  .product-actions {
+    position: absolute; bottom: 12px; right: 12px;
+    display: flex; flex-direction: column; gap: 6px;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .product-card:hover .product-actions { opacity: 1; }
+  .action-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--white); border: none; cursor: pointer;
+    font-size: 16px; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .action-btn:hover { background: var(--rose-l); transform: scale(1.1); }
+  .product-info { padding: 16px; }
+  .product-info h3 { font-size: 16px; font-family: 'Cormorant Garamond', serif; font-weight: 500; margin-bottom: 4px; color: var(--dark); }
+  .product-info .subtitle { font-size: 12px; color: var(--light); margin-bottom: 10px; }
+  .product-price {
+    display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px;
+  }
+  .price-now { font-size: 18px; font-weight: 600; color: var(--rose); font-family: 'Cormorant Garamond', serif; }
+  .price-old { font-size: 13px; color: var(--light); text-decoration: line-through; }
+  .price-off { font-size: 11px; color: var(--wa); font-weight: 500; }
+  .product-btns { display: flex; gap: 8px; }
+  .btn-wa {
+    flex: 1; background: var(--wa); color: var(--white);
+    border: none; border-radius: 8px; padding: 10px 8px;
+    font-size: 11px; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .btn-wa:hover { background: #1EBE59; transform: translateY(-1px); }
+  .btn-cart {
+    flex: 1; background: var(--dark); color: var(--white);
+    border: none; border-radius: 8px; padding: 10px 8px;
+    font-size: 11px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .btn-cart:hover { background: var(--rose-d); transform: translateY(-1px); }
+
+  /* ── FILTERS ── */
+  .filters {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 32px; align-items: center;
+  }
+  .filter-btn {
+    padding: 8px 18px; border-radius: 50px;
+    border: 1px solid rgba(28,20,16,0.15);
+    background: var(--white); color: var(--mid);
+    font-size: 12px; font-weight: 400; cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--rose); color: var(--white);
+    border-color: var(--rose);
+  }
+  .filter-label { font-size: 12px; color: var(--light); margin-right: 4px; }
+
+  /* ── COLOR SWATCHES ── */
+  .swatches { display: flex; gap: 5px; margin-bottom: 8px; }
+  .swatch {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    cursor: pointer; transition: transform 0.15s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .swatch:hover { transform: scale(1.25); }
+
+  /* ── FEATURES SECTION ── */
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .feature-card {
+    background: var(--white); border-radius: var(--r);
+    padding: 28px 24px; border: 1px solid rgba(201,164,110,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .feature-icon { font-size: 32px; margin-bottom: 14px; }
+  .feature-card h3 { font-size: 17px; margin-bottom: 8px; color: var(--dark); }
+  .feature-card p { font-size: 13px; color: var(--light); line-height: 1.7; }
+
+  /* ── PAYMENT SECTION ── */
+  .payment-section {
+    background: linear-gradient(135deg, #1C1410 0%, #2E1F17 100%);
+    padding: 80px 24px; position: relative; overflow: hidden;
+  }
+  .payment-section::before {
+    content: '';
+    position: absolute; top: -50%; right: -20%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,164,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .payment-inner { max-width: 1000px; margin: 0 auto; }
+  .payment-title { text-align: center; margin-bottom: 48px; }
+  .payment-title h2 { font-size: 36px; color: var(--white); font-style: italic; margin-bottom: 10px; }
+  .payment-title p { color: rgba(255,255,255,0.5); font-size: 14px; }
+  .payment-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+  .pay-card {
+    border-radius: var(--r); padding: 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .pay-card:hover { transform: translateY(-3px); border-color: rgba(201,164,110,0.3); }
+  .pay-card.wa-card { background: rgba(37,211,102,0.08); }
+  .pay-card.upi-card { background: rgba(108,59,170,0.08); }
+  .pay-card.cod-card { background: rgba(201,164,110,0.08); }
+  .pay-icon { font-size: 36px; margin-bottom: 14px; }
+  .pay-card h3 { font-size: 20px; font-family: 'Cormorant Garamond', serif; margin-bottom: 8px; }
+  .pay-card.wa-card h3 { color: var(--wa); }
+  .pay-card.upi-card h3 { color: #A78BFA; }
+  .pay-card.cod-card h3 { color: var(--gold); }
+  .pay-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+  .pay-apps { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .pay-app {
+    padding: 5px 12px; border-radius: 50px;
+    font-size: 11px; font-weight: 500; border: 1px solid;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .upi-app { border-color: rgba(167,139,250,0.3); color: #A78BFA; background: rgba(167,139,250,0.08); }
+  .steps { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .step { display: flex; align-items: flex-start; gap: 10px; }
+  .step-num {
+    width: 20px; height: 20px; border-radius: 50%; font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-weight: 600; margin-top: 1px;
+  }
+  .pay-card.wa-card .step-num { background: rgba(37,211,102,0.2); color: var(--wa); }
+  .pay-card.upi-card .step-num { background: rgba(167,139,250,0.2); color: #A78BFA; }
+  .step p { font-size: 12px; color: rgba(255,255,255,0.5); margin: 0; }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--wa); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; cursor: pointer;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; border: none;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 32px rgba(37,211,102,0.6); }
+  .wa-pulse {
+    position: absolute; top: 0; right: 0;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--rose); border: 2px solid var(--white);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.7; } }
+
+  /* ── TESTIMONIALS ── */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .testi-card {
+    background: var(--white); border-radius: var(--r);
+    padding: 24px; border: 1px solid rgba(201,116,122,0.1);
+    transition: transform 0.2s;
+  }
+  .testi-card:hover { transform: translateY(-3px); }
+  .testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+  .testi-text { font-size: 14px; color: var(--mid); line-height: 1.7; font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 16px; margin-bottom: 14px; }
+  .testi-author { display: flex; align-items: center; gap: 10px; }
+  .testi-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--rose-l); display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--rose); font-weight: 600;
+  }
+  .testi-name { font-size: 13px; font-weight: 500; color: var(--dark); }
+  .testi-city { font-size: 11px; color: var(--light); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6); z-index: 500;
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); border-radius: 16px;
+    max-width: 480px; width: 100%; padding: 32px;
+    position: relative; animation: slideUp 0.3s ease;
+    max-height: 90vh; overflow-y: auto;
+  }
+  @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-close {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--rose-l); border: none; cursor: pointer;
+    width: 30px; height: 30px; border-radius: 50%;
+    font-size: 16px; display: flex; align-items: center; justify-content: center;
+    color: var(--rose);
+  }
+  .modal h3 { font-size: 22px; margin-bottom: 6px; font-style: italic; color: var(--dark); }
+  .modal .price-tag { font-size: 20px; color: var(--rose); font-family: 'Cormorant Garamond', serif; font-weight: 500; margin-bottom: 16px; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 12px; color: var(--light); margin-bottom: 5px; font-weight: 500; letter-spacing: 0.04em; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 10px 14px; border-radius: 8px;
+    border: 1px solid rgba(28,20,16,0.15); font-size: 13px;
+    background: var(--ivory); color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--rose);
+  }
+  .order-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+  .order-wa {
+    background: var(--wa); color: var(--white);
+    padding: 13px; border-radius: 10px; border: none;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .order-wa:hover { background: #1EBE59; }
+  .order-upi {
+    background: var(--upi); color: var(--white);
+    padding: 13px; border-radius: 10px; border: none;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .order-upi:hover { background: #5a2d9e; }
+  .divider-or { text-align: center; font-size: 12px; color: var(--light); margin: 4px 0; position: relative; }
+  .divider-or::before, .divider-or::after {
+    content: ''; position: absolute; top: 50%; width: 42%; height: 1px;
+    background: rgba(28,20,16,0.1);
+  }
+  .divider-or::before { left: 0; }
+  .divider-or::after { right: 0; }
+
+  /* ── BANNER ── */
+  .banner {
+    background: linear-gradient(135deg, var(--rose) 0%, var(--rose-d) 100%);
+    padding: 48px 24px; text-align: center; position: relative; overflow: hidden;
+  }
+  .banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 40px);
+  }
+  .banner h2 { font-size: 32px; color: var(--white); font-style: italic; margin-bottom: 8px; position: relative; }
+  .banner p { color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 20px; position: relative; }
+  .banner .btn-gold {
+    background: var(--gold); color: var(--dark);
+    padding: 13px 30px; border-radius: 50px;
+    text-decoration: none; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.04em; display: inline-block;
+    transition: all 0.2s; position: relative;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .banner .btn-gold:hover { background: #E0BC7A; transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,0.5);
+    padding: 56px 24px 24px;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--white); margin-bottom: 10px; }
+  .footer-brand h3 span { color: var(--rose); }
+  .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 260px; }
+  .footer-col h4 { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--gold); margin-bottom: 14px; font-weight: 400; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--rose-l); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px; text-align: center;
+    font-size: 12px; color: rgba(255,255,255,0.25);
+  }
+  .footer-bottom span { color: var(--rose); }
+  .social-links { display: flex; gap: 12px; margin-top: 14px; }
+  .social-link {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; text-decoration: none; color: rgba(255,255,255,0.5);
+    transition: all 0.2s;
+  }
+  .social-link:hover { background: var(--rose); border-color: var(--rose); color: var(--white); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .hero-stats { gap: 16px; }
+    .trust-inner { gap: 8px; }
+    .trust-item { min-width: 120px; font-size: 11px; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .product-btns { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+  🌸 Free delivery on orders above ₹999
+  <span>•</span>
+  WhatsApp Order Confirmation Available
+  <span>•</span>
+  UPI Payment Accepted 💳
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Bridal <span>Bliss</span></a>
+    <ul class="nav-links">
+      <li><a href="#blouses">Blouses</a></li>
+      <li><a href="#clips">Clips & Pins</a></li>
+      <li><a href="#bands">Bands</a></li>
+      <li><a href="#trending">Trending</a></li>
+      <li><a href="#payment">Payment</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-cart" onclick="scrollToSection('trending')">
+        🛍 Cart <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-border"></div>
+  <div class="hero-content">
+    <div class="hero-tag">New Arrivals 2025</div>
+    <h1>
+      Your Bridal
+      <span>Dream Look</span>
+      Awaits
+    </h1>
+    <p class="hero-sub">
+      Exquisite bridal blouses, hair clips & bands — handpicked for the modern Tamil bride.<br>
+      Order via WhatsApp · Pay via UPI · Delivered to your door.
+    </p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#trending">Shop Now</a>
+      <a class="btn-outline" href="#payment">Order via WhatsApp</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">2,400+</div><div class="stat-lbl">Happy Brides</div></div>
+      <div class="stat-item"><div class="stat-num">500+</div><div class="stat-lbl">Designs</div></div>
+      <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-lbl">Customer Rating</div></div>
+      <div class="stat-item"><div class="stat-num">1–3</div><div class="stat-lbl">Day Delivery</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">🚚</span> Free delivery above ₹999</div>
+    <div class="trust-item"><span class="trust-icon">💬</span> WhatsApp order confirm</div>
+    <div class="trust-item"><span class="trust-icon">💳</span> UPI / GPay / PhonePe</div>
+    <div class="trust-item"><span class="trust-icon">🔄</span> Easy returns</div>
+    <div class="trust-item"><span class="trust-icon">✨</span> 500+ designs in stock</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="section fade-in" id="categories">
+  <div class="section-head">
+    <div class="section-tag">Shop by Category</div>
+    <h2>What Are You Looking For?</h2>
+    <p>From heavily embellished reception blouses to delicate hair accessories — we have it all.</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card" onclick="filterProducts('blouse')" id="blouses">
+      <div class="cat-visual" style="background:linear-gradient(135deg,#F5E6E7,#ECC8CB);">
+        <span style="font-size:60px;">👗</span>
+      </div>
+      <div class="cat-overlay">
+        <div>
+          <div class="cat-label">Bridal Blouses</div>
+          <div class="cat-count">80+ designs</div>
+        </div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('clip')" id="clips">
+      <div class="cat-visual" style="background:linear-gradient(135deg,#F7EFE0,#EDD9A3);">
+        <span style="font-size:60px;">📌</span>
+      </div>
+      <div class="cat-overlay">
+        <div>
+          <div class="cat-label">Hair Clips & Pins</div>
+          <div class="cat-count">120+ designs</div>
+        </div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('band')" id="bands">
+      <div class="cat-visual" style="background:linear-gradient(135deg,#E8DAEF,#D2B4DE);">
+        <span style="font-size:60px;">💎</span>
+      </div>
+      <div class="cat-overlay">
+        <div>
+          <div class="cat-label">Hair Bands</div>
+          <div class="cat-count">60+ designs</div>
+        </div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('accessories')" id="accessories">
+      <div class="cat-visual" style="background:linear-gradient(135deg,#D5E8D4,#A9CCB3);">
+        <span style="font-size:60px;">💍</span>
+      </div>
+      <div class="cat-overlay">
+        <div>
+          <div class="cat-label">Bridal Accessories</div>
+          <div class="cat-count">200+ items</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRENDING PRODUCTS -->
+<div style="background:#FDF8F2; padding: 4px 0;">
+<div class="section fade-in" id="trending">
+  <div class="section-head">
+    <div class="section-tag">🔥 Trending Now</div>
+    <h2>Most Loved by Brides</h2>
+    <p>Our bestselling picks — loved by thousands of brides across Tamil Nadu & beyond.</p>
+  </div>
+
+  <div class="filters">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('blouse', this)">Blouses</button>
+    <button class="filter-btn" onclick="filterProducts('clip', this)">Clips</button>
+    <button class="filter-btn" onclick="filterProducts('band', this)">Bands</button>
+    <button class="filter-btn" onclick="filterProducts('accessories', this)">Accessories</button>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+
+    <!-- BLOUSE 1 -->
+    <div class="product-card" data-cat="blouse">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#F5E6E7,#ECC8CB);">
+        <span class="product-visual">👗</span>
+        <div class="product-badge">New Arrival</div>
+        <div class="product-actions">
+          <button class="action-btn" title="Wishlist">♡</button>
+          <button class="action-btn" title="Quick View" onclick="openModal('Silk Zari Bridal Blouse','Deep neck with heavy gold zari embroidery. Available in red, maroon, green.','₹2,499','blouse1')">👁</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="swatches">
+          <div class="swatch" style="background:#8B0000;" title="Maroon"></div>
+          <div class="swatch" style="background:#006400;" title="Green"></div>
+          <div class="swatch" style="background:#FFD700;" title="Golden"></div>
+          <div class="swatch" style="background:#4B0082;" title="Violet"></div>
+        </div>
+        <h3>Silk Zari Bridal Blouse</h3>
+        <div class="subtitle">Heavy embroidery · Deep neck · Sizes S–XXL</div>
+        <div class="product-price">
+          <span class="price-now">₹2,499</span>
+          <span class="price-old">₹3,200</span>
+          <span class="price-off">22% off</span>
+        </div>
+        <div class="product-btns">
+          <button class="btn-wa" onclick="whatsappOrder('Silk Zari Bridal Blouse','₹2,499')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="btn-cart" onclick="addToCart('Silk Zari Bridal Blouse'); openModal('Silk Zari Bridal Blouse','Deep neck with heavy gold zari embroidery.','₹2,499','blouse1')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOUSE 2 -->
+    <div class="product-card" data-cat="blouse">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#FFF8E7,#F0D58C);">
+        <span class="product-visual">✨</span>
+        <div class="product-badge gold">Bestseller</div>
+      </div>
+      <div class="product-info">
+        <div class="swatches">
+          <div class="swatch" style="background:#FFD700;"></div>
+          <div class="swatch" style="background:#FF6B6B;"></div>
+          <div class="swatch" style="background:#C0C0C0;"></div>
+        </div>
+        <h3>Kanjeevaram Blouse</h3>
+        <div class="subtitle">Pure silk · Temple border · Stitched</div>
+        <div class="product-price">
+          <span class="price-now">₹3,199</span>
+          <span class="price-old">₹4,000</span>
+          <span class="price-off">20% off</span>
+        </div>
+        <div class="product-btns">
+          <button class="btn-wa" onclick="whatsappOrder('Kanjeevaram Blouse','₹3,199')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="btn-cart" onclick="addToCart('Kanjeevaram Blouse'); openModal('Kanjeevaram Blouse','Pure silk temple border blouse','₹3,199','blouse2')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIP 1 -->
+    <div class="product-card" data-cat="clip">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#F7EFE0,#EDD9A3);">
+        <span class="product-visual">📌</span>
+        <div class="product-badge dark">Trending</div>
+      </div>
+      <div class="product-info">
+        <div class="swatches">
+          <div class="swatch" style="background:#FFD700;"></div>
+          <div class="swatch" style="background:#C0C0C0;"></div>
+          <div class="swatch" style="background:#B87333;"></div>
+        </div>
+        <h3>Kundan Flower Clip Set</h3>
+        <div class="subtitle">Set of 6 · Gold plated · Bridal hair</div>
+        <div class="product-price">
+          <span class="price-now">₹549</span>
+          <span class="price-old">₹799</span>
+          <span class="price-off">31% off</span>
+        </div>
+        <div class="product-btns">
+          <button class="btn-wa" onclick="whatsappOrder('Kundan Flower Clip Set (x6)','₹549')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="btn-cart" onclick="addToCart('Kundan Flower Clip Set'); openModal('Kundan Flower Clip Set','Set of 6 gold-plated kundan flower clips for bridal hair styling.','₹549','clip1')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIP 2 -->
+    <div class="product-card" data-cat="clip">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#E8DAEF,#D2B4DE);">
+        <span class="product-visual">💎</span>
+        <div class="product-badge">New</div>
+      </div>
+      <div class="product-info">
+        <div class="swatches">
+          <div class="swatch" style="background:#FFD700;"></div>
+          <div class="swatch" style="background:#9B59B6;"></div>
+          <div class="swatch" style="background:#E74C3C;"></div>
+        </div>
+        <h3>Pearl & Stone Jada Pin</h3>
+        <div class="subtitle">Single piece · Bridal jada · Traditional</div>
+        <div class="product-price">
+          <span class="price-now">₹399</span>
+          <span class="price-old">₹599</span>
+          <span class="price-off">33% off</span>
+        </div>
+        <div class="product-btns">
+          <button class="btn-wa" onclick="whatsappOrder('Pearl & Stone Jada Pin','₹399')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="btn-cart" onclick="addToCart('Pearl & Stone Jada Pin'); openModal('Pearl & Stone Jada Pin','Traditional bridal jada pin with pearls and coloured stones.','₹399','clip2')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAND 1 -->
+    <div class="product-card" data-cat="band">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#D5E8D4,#A9CCB3);">
+        <span class="product-visual">🌸</span>
+        <div class="product-badge gold">Hot Pick</div>
+      </div>
+      <div class="product-info">
+        <div class="swatches">
+          <div class="swatch" style="background:#27AE60;"></div>
+          <div class="swatch" style="background:#E74C3C;"></div>
+          <div class="swatch" style="background:#F39C12;"></div>
+          <div class="swatch" style="background:#8E44AD;"></div>
+        </div>
+        <h3>Floral Velvet Hair Band</h3>
+        <div class="subtitle">Embellished · Bridal collection · Adjustable</div>
+        <div class="product-price">
+          <span class="price-now">₹299</span>
+          <span class="price-old">₹449</span>
+          <span class="price-off">33% off</span>
+        </div>
+        <div class="product-btns">
+          <button class="btn-wa" onclick="whatsappOrder('Floral Velvet Hair Band','₹299')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="btn-cart" onclick="addToCart('Floral Velvet Hair Band'); openModal('Floral Velvet Hair Band','Beautiful floral embellished velvet hair band for brides.','₹299','band1')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAND 2 -->
+    <div class="product-card" data-cat="band">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#FADBD8,#F1948A);">
+        <span class="product-visual">👑</span>
+        <div class="product-badge">Trending</div>
+      </div>
+      <div class="product-info">
+        <div class="swatches">
+          <div class="swatch" style="background:#FFD700;"></div>
+          <div class="swatch" style="background:#FF69B4;"></div>
+          <div class="swatch" style="background:#DC143C;"></div>
+        </div>
+        <h3>Gold Tiara Band</h3>
+        <div class="subtitle">Wedding crown band · Gold-plated · One size</div>
+        <div class="product-price">
+          <span class="price-now">₹699</span>
+          <span class="price-old">₹999</span>
+          <span class="price-off">30% off</span>
+        </div>
+        <div class="product-btns">
+          <button class="btn-wa" onclick="whatsappOrder('Gold Tiara Band','₹699')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="btn-cart" onclick="addToCart('Gold Tiara Band'); openModal('Gold Tiara Band','Beautiful gold-plated tiara-style hair band for brides.','₹699','band2')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCESSORY -->
+    <div class="product-card" data-cat="accessories">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#FDEBD0,#F0B27A);">
+        <span class="product-visual">💍</span>
+        <div class="product-badge dark">Combo Offer</div>
+      </div>
+      <div class="product-info">
+        <h3>Bridal Jewellery Combo</h3>
+        <div class="subtitle">Maang tikka + Nath + Ear ring set</div>
+        <div class="product-price">
+          <span class="price-now">₹1,299</span>
+          <span class="price-old">₹2,100</span>
+          <span class="price-off">38% off</span>
+        </div>
+        <div class="product-btns">
+          <button class="btn-wa" onclick="whatsappOrder('Bridal Jewellery Combo Set','₹1,299')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="btn-cart" onclick="addToCart('Bridal Jewellery Combo'); openModal('Bridal Jewellery Combo','Complete bridal set: Maang tikka, Nath & Earrings.','₹1,299','acc1')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOUSE 3 -->
+    <div class="product-card" data-cat="blouse">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#D6EAF8,#85C1E9);">
+        <span class="product-visual">🎀</span>
+        <div class="product-badge">Reception</div>
+      </div>
+      <div class="product-info">
+        <div class="swatches">
+          <div class="swatch" style="background:#1ABC9C;"></div>
+          <div class="swatch" style="background:#3498DB;"></div>
+          <div class="swatch" style="background:#9B59B6;"></div>
+        </div>
+        <h3>Mirror Work Reception Blouse</h3>
+        <div class="subtitle">Modern cut · Mirror embroidery · All sizes</div>
+        <div class="product-price">
+          <span class="price-now">₹1,899</span>
+          <span class="price-old">₹2,500</span>
+          <span class="price-off">24% off</span>
+        </div>
+        <div class="product-btns">
+          <button class="btn-wa" onclick="whatsappOrder('Mirror Work Reception Blouse','₹1,899')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </button>
+          <button class="btn-cart" onclick="addToCart('Mirror Work Reception Blouse'); openModal('Mirror Work Reception Blouse','Modern mirror embroidery blouse for reception night.','₹1,899','blouse3')">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /product-grid -->
+</div>
+</div>
+
+<!-- PAYMENT SECTION -->
+<section class="payment-section" id="payment">
+  <div class="payment-inner">
+    <div class="payment-title">
+      <h2>Simple & Secure Ordering</h2>
+      <p>Order with confidence — choose your preferred way to pay and confirm</p>
+    </div>
+    <div class="payment-cards">
+      <div class="pay-card wa-card">
+        <div class="pay-icon">💬</div>
+        <h3>WhatsApp Order</h3>
+        <p>Click any product's WhatsApp button — our team confirms your order personally within minutes.</p>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><p>Click WhatsApp button on any product</p></div>
+          <div class="step"><div class="step-num">2</div><p>Chat with us, share size & colour choice</p></div>
+          <div class="step"><div class="step-num">3</div><p>Receive order confirmation + payment link</p></div>
+          <div class="step"><div class="step-num">4</div><p>We ship within 24 hours!</p></div>
+        </div>
+      </div>
+      <div class="pay-card upi-card">
+        <div class="pay-icon">💳</div>
+        <h3>UPI Payment</h3>
+        <p>Fast, secure, zero-fee payments. All major UPI apps accepted.</p>
+        <div class="pay-apps">
+          <span class="pay-app upi-app">GPay</span>
+          <span class="pay-app upi-app">PhonePe</span>
+          <span class="pay-app upi-app">Paytm</span>
+          <span class="pay-app upi-app">BHIM</span>
+          <span class="pay-app upi-app">Amazon Pay</span>
+        </div>
+        <div class="steps" style="margin-top:16px;">
+          <div class="step"><div class="step-num">1</div><p>Choose your product & click Order Now</p></div>
+          <div class="step"><div class="step-num">2</div><p>Fill order form & select UPI payment</p></div>
+          <div class="step"><div class="step-num">3</div><p>Scan QR or pay to our UPI ID</p></div>
+        </div>
+      </div>
+      <div class="pay-card cod-card">
+        <div class="pay-icon">📦</div>
+        <h3>Cash on Delivery</h3>
+        <p>Pay when your order arrives at your doorstep. Available for orders above ₹499 in Tamil Nadu.</p>
+        <div class="steps" style="margin-top:16px;">
+          <div class="step"><div class="step-num">1</div><p>Place order via WhatsApp</p></div>
+          <div class="step"><div class="step-num">2</div><p>Confirm COD option with our team</p></div>
+          <div class="step"><div class="step-num">3</div><p>Receive package & pay delivery agent</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="section fade-in">
+  <div class="section-head">
+    <div class="section-tag">Why Choose Us</div>
+    <h2>The Bridal Bliss Promise</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎀</div>
+      <h3>Curated Bridal Collection</h3>
+      <p>Every design is handpicked by our bridal styling experts. Only the most trending 2025 designs make it to our store.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📏</div>
+      <h3>Custom Stitching</h3>
+      <p>All blouses are available with custom stitching to your exact measurements. Just share your size on WhatsApp!</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚚</div>
+      <h3>Fast Delivery</h3>
+      <p>Order today, delivered in 1–3 days within Tamil Nadu. Pan-India delivery in 3–7 days. Express available.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔄</div>
+      <h3>Easy Exchange</h3>
+      <p>Not happy with the size or colour? Exchange within 7 days — no questions asked. Your satisfaction is our priority.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROMO BANNER -->
+<div class="banner">
+  <h2>🌸 Special Bridal Package Offer</h2>
+  <p>Buy any 2 blouses + 1 clip set + 1 band — get 15% extra off! Use code <strong>BRIDE2025</strong></p>
+  <a class="btn-gold" href="#" onclick="whatsappOrder('Bridal Package (2 Blouses + Clip Set + Band)','Special combo')">Claim Offer on WhatsApp</a>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="section fade-in">
+  <div class="section-head">
+    <div class="section-tag">❤️ Happy Brides</div>
+    <h2>What They Say</h2>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Ordered 3 blouses and all clips for my wedding through WhatsApp. Delivery was super fast and quality is amazing! My friends all asked where I got them."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">P</div>
+        <div><div class="testi-name">Priya Lakshmi</div><div class="testi-city">Chennai, Tamil Nadu</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The gold tiara band looked exactly like the picture — so beautiful! Paid via GPay, very smooth process. Will order again for my sister's wedding."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">D</div>
+        <div><div class="testi-name">Divya Menon</div><div class="testi-city">Coimbatore, Tamil Nadu</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Loved the Kanjeevaram blouse! Custom stitching was perfect to my measurements. The team was very helpful on WhatsApp. Highly recommend!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div><div class="testi-name">Swetha Rajan</div><div class="testi-city">Madurai, Tamil Nadu</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Bridal <span>Bliss</span></h3>
+        <p>Your one-stop destination for bridal blouses, hair clips, bands and accessories. Trusted by 2,400+ brides across India.</p>
+        <div class="social-links">
+          <a class="social-link" href="#" title="Instagram">📸</a>
+          <a class="social-link" href="#" title="Facebook">📘</a>
+          <a class="social-link" href="#" title="YouTube">▶️</a>
+          <a class="social-link" href="#" title="WhatsApp" onclick="whatsappOrder('Hello, I want to browse your collection','')">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#" onclick="filterProducts('blouse')">Bridal Blouses</a></li>
+          <li><a href="#" onclick="filterProducts('clip')">Hair Clips & Pins</a></li>
+          <li><a href="#" onclick="filterProducts('band')">Hair Bands</a></li>
+          <li><a href="#" onclick="filterProducts('accessories')">Accessories</a></li>
+          <li><a href="#trending">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#payment">How to Order</a></li>
+          <li><a href="#payment">Payment Options</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#" onclick="whatsappOrder('Hello','')">💬 WhatsApp Us</a></li>
+          <li><a href="#">📍 Cumbum, Tamil Nadu</a></li>
+          <li><a href="#">📦 Ships Pan-India</a></li>
+          <li><a href="#">🌍 International Orders</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Bridal Bliss Boutique. Made with <span>❤</span> in Tamil Nadu, India.<br>
+      <small style="margin-top:6px;display:block;">UPI · WhatsApp Orders · Cash on Delivery · Easy Returns</small>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<a class="wa-float" href="#" onclick="whatsappOrder('Hello! I want to place an order','')">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <div class="wa-pulse"></div>
+</a>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 id="modalTitle">Product Name</h3>
+    <p id="modalDesc" style="font-size:13px;color:#8C7B74;margin-bottom:10px;"></p>
+    <div class="price-tag" id="modalPrice">₹0</div>
+    <div class="form-group">
+      <label>YOUR NAME</label>
+      <input type="text" id="fname" placeholder="Enter your full name">
+    </div>
+    <div class="form-group">
+      <label>PHONE NUMBER</label>
+      <input type="tel" id="fphone" placeholder="+91 9876543210">
+    </div>
+    <div class="form-group">
+      <label>DELIVERY ADDRESS</label>
+      <textarea id="faddress" rows="2" placeholder="Street, City, Pincode"></textarea>
+    </div>
+    <div class="form-group">
+      <label>SIZE (for blouses)</label>
+      <select id="fsize">
+        <option value="">Select size</option>
+        <option>XS (32)</option><option>S (34)</option><option>M (36)</option>
+        <option>L (38)</option><option>XL (40)</option><option>XXL (42)</option>
+        <option>Custom measurements</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>COLOUR PREFERENCE</label>
+      <input type="text" id="fcolor" placeholder="e.g. Red, Maroon, Gold...">
+    </div>
+    <div class="form-group">
+      <label>SPECIAL NOTES</label>
+      <input type="text" id="fnotes" placeholder="Any special requirements...">
+    </div>
+    <div class="order-btns">
+      <button class="order-wa" onclick="submitWhatsApp()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Confirm Order via WhatsApp
+      </button>
+      <div class="divider-or">or pay directly</div>
+      <button class="order-upi" onclick="submitUPI()">
+        💳 Pay via UPI (GPay / PhonePe / Paytm)
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── CONFIG — Update these with your real details ──
+  const SHOP_PHONE = '919876543210'; // Your WhatsApp number (with country code, no +)
+  const UPI_ID     = 'yourupi@paytm';  // Your UPI ID
+  const SHOP_NAME  = 'Bridal Bliss Boutique';
+
+  // Cart count
+  let cartCount = 0;
+  function addToCart(name) {
+    cartCount++;
+    document.getElementById('cartCount').textContent = cartCount;
+  }
+
+  // Filter products
+  function filterProducts(cat, btn) {
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(c => {
+      if (cat === 'all' || c.dataset.cat === cat) {
+        c.style.display = 'block';
+      } else {
+        c.style.display = 'none';
+      }
+    });
+    if (btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    const grid = document.getElementById('trending');
+    if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Modal
+  function openModal(title, desc, price, id) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDesc').textContent = desc;
+    document.getElementById('modalPrice').textContent = price;
+    document.getElementById('orderModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('orderModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('orderModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // WhatsApp quick order (from product card)
+  function whatsappOrder(product, price) {
+    const msg = encodeURIComponent(
+      `🌸 *${SHOP_NAME}* — New Order!\n\n` +
+      `*Product:* ${product}\n` +
+      `*Price:* ${price}\n\n` +
+      `Hi! I want to order this item. Please confirm availability and share payment details. Thank you! 🙏`
+    );
+    window.open(`https://wa.me/${SHOP_PHONE}?text=${msg}`, '_blank');
+  }
+
+  // WhatsApp full order (from modal)
+  function submitWhatsApp() {
+    const name    = document.getElementById('fname').value || 'Not provided';
+    const phone   = document.getElementById('fphone').value || 'Not provided';
+    const address = document.getElementById('faddress').value || 'Not provided';
+    const size    = document.getElementById('fsize').value || 'Not selected';
+    const color   = document.getElementById('fcolor').value || 'Not specified';
+    const notes   = document.getElementById('fnotes').value || 'None';
+    const product = document.getElementById('modalTitle').textContent;
+    const price   = document.getElementById('modalPrice').textContent;
+
+    const msg = encodeURIComponent(
+      `🌸 *NEW ORDER — ${SHOP_NAME}*\n\n` +
+      `*Product:* ${product}\n` +
+      `*Price:* ${price}\n\n` +
+      `*Customer Name:* ${name}\n` +
+      `*Phone:* ${phone}\n` +
+      `*Address:* ${address}\n` +
+      `*Size:* ${size}\n` +
+      `*Colour:* ${color}\n` +
+      `*Notes:* ${notes}\n\n` +
+      `Please confirm my order. Thank you! 🙏`
+    );
+    window.open(`https://wa.me/${SHOP_PHONE}?text=${msg}`, '_blank');
+    closeModal();
+  }
+
+  // UPI payment
+  function submitUPI() {
+    const product = document.getElementById('modalTitle').textContent;
+    const price   = document.getElementById('modalPrice').textContent;
+    const amount  = price.replace('₹','').replace(',','');
+    const note    = encodeURIComponent(`Order: ${product} - ${SHOP_NAME}`);
+    const upiUrl  = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(SHOP_NAME)}&am=${amount}&cu=INR&tn=${note}`;
+    window.location.href = upiUrl;
+    setTimeout(() => {
+      alert(`UPI ID: ${UPI_ID}\nAmount: ${price}\n\nIf UPI app didn't open, please manually pay to the above UPI ID and send screenshot via WhatsApp for confirmation.`);
+    }, 1500);
+  }
+
+  // Scroll to section
+  function scrollToSection(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
