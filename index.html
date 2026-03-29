@@ -632,6 +632,11 @@ footer{background:var(--dark);padding:56px 24px 24px;color:rgba(255,255,255,0.45
 </style>
 </head>
 <body>
+  <input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<button onclick="addProduct()">Add Product</button>
+
+<div id="products"></div>
 
 <!-- ADMIN PASSWORD GATE -->
 <div id="adminGate">
@@ -1443,8 +1448,66 @@ const obs = new IntersectionObserver(entries=>{
 },{threshold:0.1});
 document.querySelectorAll('.sf').forEach(el=>obs.observe(el));
 
+async function loadProducts() {
+  const querySnapshot = await getDocs(collection(db, "products"));
+  const container = document.getElementById("products");
+
+  container.innerHTML = "";
+
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+
+    container.innerHTML += `
+      <div>
+        <h3>${data.name}</h3>
+        <p>₹${data.price}</p>
+      </div>
+    `;
+  });
+}
+
+loadProducts();
 // ── INIT ──────────────────────────────────────────────────
 renderProducts();
+
+<body>
+
+<h1>My Shop</h1>
+
+<!-- உன் content -->
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDYjRtEK4EMnDgmpgfCT3_T-Z_tiuTpLwQ",
+    authDomain: "dds-creations.firebaseapp.com",
+    projectId: "dds-creations",
+    storageBucket: "dds-creations.firebasestorage.app",
+    messagingSenderId: "437678407993",
+    appId: "1:437678407993:web:ef83dec95a18a34fe728e8",
+    measurementId: "G-PHKFQ6CKQD"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getFirestore(app);
+  
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+window.addProduct = async function () {
+  const name = document.getElementById("name").value;
+  const price = document.getElementById("price").value;
+
+  await addDoc(collection(db, "products"), {
+    name: name,
+    price: price
+  });
+
+  alert("Product Added!");
+};
 </script>
 </body>
 </html>
